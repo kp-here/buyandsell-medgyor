@@ -6,17 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db": "json-server --watch content.json -p 5000"
   },
   "dependencies": {
+    "@rive-app/react-canvas": "^3.0.38",
     "@types/node": "18.15.9",
     "@types/react": "18.0.29",
     "@types/react-dom": "18.0.11",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",
+    "next-auth": "^4.20.1",
     "react": "18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "18.2.0",
+    "react-intersection-observer": "^9.4.3",
     "typescript": "5.0.2"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.3"
   }
 }

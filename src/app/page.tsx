@@ -1,91 +1,80 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+"use client";
 
-const inter = Inter({ subsets: ['latin'] })
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+// import a from '/a.riv'
+let Component = ({ a, b }) => {
+    return (
+        <div className="comp">
+            <div>{a}</div>
+            <div>{b}</div>
         </div>
-      </div>
+    );
+};
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
+let Page = () => {
+    const imgElement = useRef(null);
 
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    const [val, setVal] = useState(null);
+    const [file, setFile] = useState(null);
+    const [fileDesc, setFileDesc] = useState(null);     
+    const [upload, setUpload] = useState(false);
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
+    // let handler = async () => {
+    //     let t = await fetch("http://localhost:5000/content").then((res) =>
+    //         res.json()
+    //     );
+    //     setVal(t);
+    // };
+    // useEffect(() => {
+    //     handler();
+        
+    // }, []);
+    return (
+        <>
+            {/* <div className="par">
+                {val && val.map((i) => {
+                    return <Component a={i.a} b={i.b} />;
+                })}
+            </div> */}
+            <div>
+                <input type="text" name="" id="" placeholder="item name" />
+                <input
+                    type="file"
+                    name=""
+                    id=""
+                    placeholder="select file"
+                    onChange={(e) => {
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+                        let t = e.target.files[0];
+
+                        setFile(t)
+                        setUpload(false);
+                    }}
+                />
+                <button
+                    onClick={() => {
+                        console.log("uploaded");
+                        setUpload(true);
+                    }}
+                >
+                    Upload
+                </button>
+                {file && upload && <img
+                    src={URL.createObjectURL(file)}
+                    onLoad={() => {   
+                        setFileDesc({
+                            h:Math.floor((200/imgElement.current.naturalWidth)*imgElement.current.naturalHeight),
+                            w:200
+                        })                     
+                    }}
+                    ref={imgElement}
+                    height={fileDesc?.h}
+                    width={fileDesc?.w}
+                />}
+            </div>
+        </>
+    );
+};
+export default Page;

@@ -1,0 +1,26 @@
+.gbtn {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    /* width: 250px; */
+    background-color: #14213d;
+    padding: 20px 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 60px;
+
+}
+.gbtn:hover{
+    cursor: pointer;
+    background-color:blueviolet;
+}
+.gbtn:focus{
+    background-color:aqua;
+}
+.gtbsub{
+
+}
+.gtxt{
+    color: white;
+}
